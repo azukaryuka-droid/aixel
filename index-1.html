@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aixel | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0a0a1a;
+            color: #e0e0ff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .portfolio-card {
+            background: linear-gradient(145deg, #0f0f2a, #1a1a3a);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 1px solid #2a2a5a;
+        }
+
+        .header {
+            background: linear-gradient(to right, #1a1a3a, #2a2a5a);
+            padding: 25px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #3a3a6a;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px solid #4a4aff;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(74, 74, 255, 0.5);
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-info h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .profile-info .date {
+            font-size: 1.1rem;
+            color: #a0a0ff;
+            margin-bottom: 10px;
+        }
+
+        .level-tags {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .level-tag {
+            background: linear-gradient(to right, #3a3a6a, #4a4a8a);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #b0b0ff;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .level-tag i {
+            color: #4a4aff;
+        }
+
+        .content {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .left-column, .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #3a3a6a;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: #4a4aff;
+        }
+
+        .general-stats {
+            background: #151530;
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid #2a2a5a;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .stat-item {
+            background: #1a1a3a;
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s, background 0.3s;
+            cursor: pointer;
+            border: 1px solid #2a2a5a;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: #22224a;
+            border-color: #4a4aff;
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            color: #4a4aff;
+            margin-bottom: 10px;
+        }
+
+        .stat-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #e0e0ff;
+        }
+
+        .favorite-section {
+            background: #151530;
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid #2a2a5a;
+        }
+
+        .favorite-item {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #2a2a5a;
+        }
+
+        .favorite-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .game-icon, .anime-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 2px solid #3a3a6a;
+        }
+
+        .game-icon img, .anime-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .favorite-info h3 {
+            color: #ffffff;
+            margin-bottom: 5px;
+            font-size: 1.3rem;
+        }
+
+        .favorite-info p {
+            color: #a0a0ff;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #8a8aff;
+            margin-top: 8px;
+            padding-left: 10px;
+            border-left: 3px solid #4a4aff;
+        }
+
+        .social-media {
+            background: #151530;
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid #2a2a5a;
+        }
+
+        .social-icons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px;
+            background: #1a1a3a;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #e0e0ff;
+            transition: all 0.3s;
+            border: 1px solid #2a2a5a;
+        }
+
+        .social-icon:hover {
+            background: #22224a;
+            transform: translateX(5px);
+            border-color: #4a4aff;
+        }
+
+        .social-icon i {
+            font-size: 1.5rem;
+            width: 30px;
+            text-align: center;
+        }
+
+        .instagram i { color: #E1306C; }
+        .x i { color: #1DA1F2; }
+        .facebook i { color: #4267B2; }
+        .tiktok i { color: #25F4EE; }
+
+        .social-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #8a8aff;
+            font-size: 0.9rem;
+            border-top: 1px solid #2a2a5a;
+            background: #151530;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .profile-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-info h1 {
+                font-size: 2.2rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .social-icons {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .level-tags {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="portfolio-card">
+            <div class="header">
+                <div class="profile-section">
+                    <div class="profile-pic">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVXTlWJxF5AUTdwEj2NjgAYIedO3GCx7PgPYybN5yukw&s=10" alt="Foto Profil Aixel">
+                    </div>
+                    <div class="profile-info">
+                        <h1>Aixel | Portfolio</h1>
+                        <div class="date">
+                            <i class="far fa-calendar-alt"></i> Sunday 2024-07-21 14:30 PM
+                        </div>
+                        <div class="level-tags">
+                            <div class="level-tag"><i class="fas fa-chart-line"></i> Level ∞</div>
+                            <div class="level-tag"><i class="fas fa-gamepad"></i> Gamer</div>
+                            <div class="level-tag"><i class="fas fa-palette"></i> Creator</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="left-column">
+                    <div class="general-stats">
+                        <h2 class="section-title"><i class="fas fa-chart-bar"></i> General Stats</h2>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-icon"><i class="fas fa-gamepad"></i></div>
+                                <div class="stat-name">Gaming</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon"><i class="fas fa-music"></i></div>
+                                <div class="stat-name">Music</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon"><i class="fas fa-lightbulb"></i></div>
+                                <div class="stat-name">Creativity</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon"><i class="fas fa-code"></i></div>
+                                <div class="stat-name">Coding</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon"><i class="fas fa-tv"></i></div>
+                                <div class="stat-name">Anime</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon"><i class="fas fa-paint-brush"></i></div>
+                                <div class="stat-name">Design</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="favorite-section">
+                        <h2 class="section-title"><i class="fas fa-gamepad"></i> Top Game</h2>
+                        <div class="favorite-item">
+                            <div class="game-icon">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFUhPegzs1F9yXFKrwmECfNJrypdDCIyE7xw1Jv4Uusg&s=10" alt="Minecraft">
+                            </div>
+                            <div class="favorite-info">
+                                <h3>Minecraft</h3>
+                                <p>"The world is infinite."</p>
+                                <p class="quote">Building amazing worlds since 2017</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right-column">
+                    <div class="favorite-section">
+                        <h2 class="section-title"><i class="fas fa-tv"></i> Favorite Anime</h2>
+                        <div class="favorite-item">
+                            <div class="anime-icon">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGNoGpRTTnYhuBy6vJMPPnjVJYHEdGQfeNv_KrtmPzow&s=10" alt="NO GAME NO LIFE">
+                            </div>
+                            <div class="favorite-info">
+                                <h3>NO GAME NO LIFE</h3>
+                                <p>"anime masterpiece kesukaan saya jangan lupa nonton"</p>
+                                <p class="quote">tahun rilis no game no life 2014</p>
+                            </div>
+                        </div>
+                        
+                        <div class="favorite-item">
+                            <div class="anime-icon">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSy6EOJxLkecp7kEdadkxuRGiEJyl9Xttks2bJQdFosUQ&s=10" alt="Demon Slayer">
+                            </div>
+                            <div class="favorite-info">
+                                <h3>Demon Slayer</h3>
+                                <p>"No matter how many people you may lose, you have no choice but to go on living."</p>
+                                <p class="quote">Favorite new gen anime</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-media">
+                        <h2 class="section-title"><i class="fas fa-share-alt"></i> Social Media</h2>
+                        <div class="social-icons">
+                            <a href="https://www.instagram.com/hantu.nime?igsh=MWpjYjd5bWNzbDZjcQ==" class="social-icon instagram">
+                                <i class="fab fa-instagram"></i>
+                                <span class="social-name">Instagram</span>
+                            </a>
+                            <a href="https://x.com/KAZEYu128251" class="social-icon x">
+                                <i class="fab fa-twitter"></i>
+                                <span class="social-name">X (Twitter)</span>
+                            </a>
+                            <a href="https://www.facebook.com/share/16h5gMEaSx/" class="social-icon facebook">
+                                <i class="fab fa-facebook-f"></i>
+                                <span class="social-name">Facebook</span>
+                            </a>
+                            <a href="https://www.tiktok.com/@alxyzn_0?_r=1&_t=ZS-92rKwEW81V2" class="social-icon tiktok">
+                                <i class="fab fa-tiktok"></i>
+                                <span class="social-name">TikTok</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <p>© 2024 Aixel Portfolio. All rights reserved. | Made with <i class="fas fa-heart" style="color: #ff4a4a;"></i></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Update tanggal dan waktu secara real-time
+        function updateDateTime() {
+            const now = new Date();
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            
+            const dayName = days[now.getDay()];
+            const year = now.getFullYear();
+            const month = months[now.getMonth()];
+            const date = now.getDate();
+            
+            let hours = now.getHours();
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12 || 12;
+            
+            const dateString = `${dayName} ${year}-${month}-${date.toString().padStart(2, '0')} ${hours}:${minutes} ${ampm}`;
+            
+            document.querySelector('.date').innerHTML = `<i class="far fa-calendar-alt"></i> ${dateString}`;
+        }
+        
+        // Update waktu setiap menit
+        updateDateTime();
+        setInterval(updateDateTime, 60000);
+        
+        // Efek hover statistik
+        document.querySelectorAll('.stat-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                const icon = this.querySelector('.stat-icon i');
+                icon.style.transform = 'scale(1.2)';
+                icon.style.transition = 'transform 0.3s';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                const icon = this.querySelector('.stat-icon i');
+                icon.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
